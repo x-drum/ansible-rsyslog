@@ -1,0 +1,3 @@
+# RHEL related tasks
+---
+- include: rh_packages.yml

@@ -1,0 +1,3 @@
+# Archlinux related tasks
+---
+- include: arch_packages.yml

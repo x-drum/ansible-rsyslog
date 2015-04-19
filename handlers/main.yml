@@ -1,0 +1,6 @@
+---
+- name: rsyslog | restart service
+  tags: 
+    - rsyslog
+    - configuration
+  service: name={{ rsyslog_service_name }} state=restarted

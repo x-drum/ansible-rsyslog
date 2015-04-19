@@ -1,0 +1,8 @@
+# install packages for RHEL
+---
+- name: Install packages for RHEL
+  tags:
+    - rsyslog
+    - packages
+  yum: pkg={{item}} state=installed
+  with_items: rsyslog_package_names

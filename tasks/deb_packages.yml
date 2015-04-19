@@ -1,0 +1,8 @@
+# install packages for Debian
+---
+- name: Install packages for Debian
+  tags:
+    - rsyslog
+    - packages
+  apt: pkg={{item}} state=installed
+  with_items: rsyslog_package_names

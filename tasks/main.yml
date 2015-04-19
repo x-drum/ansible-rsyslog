@@ -1,0 +1,106 @@
+# Install and configure rsyslog
+
+# - name: rsyslog | Include default variables
+#   tags:
+#     - rsyslog
+#     - prereq
+#   include_vars: defaults
+
+- name: rsyslog | Set OS dependent variables
+  tags:
+    - rsyslog
+    - prereq
+  include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml"
+   - "{{ ansible_distribution }}.yml"
+   - "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}.yml"
+   - "{{ ansible_os_family }}.yml"
+   - default.yml
+
+- include: main_rh.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: main_deb.yml
+  when: ansible_os_family == 'Debian'
+
+- include: main_arch.yml
+  when: ansible_os_family == 'Archlinux'
+
+- name: rsyslog | Setup main configuration
+  tags:
+    - rsyslog
+    - files
+  template: >
+    src=rsyslog.conf.j2
+    dest={{ rsyslog_main_config }}
+    owner={{ rsyslog_file_owner }}
+    group={{ rsyslog_file_group }}
+    mode={{ rsyslog_file_mode }}
+  notify:
+    - rsyslog | restart service
+  when: rsyslog_os_supported == True
+
+# - name: rsyslog | create additional configuration directory
+#   file: path={{project_root}}/conf state=directory
+- name: rsyslog | create additional configuration directory
+  tags:
+    - rsyslog
+    - files
+  file: >
+    path="{{ rsyslog_include_path }}"
+    owner={{ rsyslog_file_owner }}
+    group={{ rsyslog_file_group }}
+    mode={{ rsyslog_file_mode }}
+    state=directory
+  when: rsyslog_os_supported == True
+
+- name: rsyslog | Setup default additional configuration
+  tags:
+    - rsyslog
+    - files
+  template: > 
+    src=rsyslog.snippet.conf.j2
+    dest={{ rsyslog_include_path }}/{{item.name}}.conf
+    owner={{ rsyslog_file_owner }}
+    group={{ rsyslog_file_group }}
+    mode={{ rsyslog_file_mode }}
+  with_items:
+    - name: "50-default"
+      lines: 
+        - '*.info;mail.none;authpriv.none;cron.none /var/log/messages'
+        - 'kern.*                                   -/var/log/kern.log'
+        - 'auth.*;authpriv.*                        /var/log/auth.log'
+        - 'daemon.*                                 /var/log/daemon.log'
+        - 'cron.*                                   -/var/log/cron.log'
+        - 'mail.*                                   -/var/log/mail.log'
+        - 'uucp,news.*                              /var/log/spooler'
+        - '*.emerg                                  *'
+        - 'local7.*                                 /var/log/boot.log'
+        - '*.*                                      /var/log/uncategorized.log'
+  notify:
+    - rsyslog | restart service
+  when: rsyslog_default_config == "True" and rsyslog_os_supported == True
+
+- name: rsyslog | Setup additional configurations
+  tags:
+    - rsyslog
+    - files
+  template: > 
+    src=rsyslog.snippet.conf.j2
+    dest={{ rsyslog_include_path }}/{{item.name}}.conf
+    owner={{ rsyslog_file_owner }}
+    group={{ rsyslog_file_group }}
+    mode={{ rsyslog_file_mode }}
+  with_items: 
+    - "{{ items }}"
+  notify:
+    - rsyslog | restart service
+  when: rsyslog_os_supported == True
+
+- name: rsyslog | Enable service
+  tags:
+    - rsyslog
+    - configuration
+  service: name={{ rsyslog_service_name }} enabled=yes
+  when: rsyslog_os_supported == True
