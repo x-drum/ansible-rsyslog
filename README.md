@@ -13,18 +13,30 @@ Default Role Variables
 
 By default this role will provide a minimal configuration
 
-*rsyslog_main_config*: Main config file path (default: "/etc/rsyslog.conf")
-*rsyslog_include_path*: Path of additional config stanzas (default: "/etc/rsyslog.d")
-*rsyslog_file_mode*: Default mode for configuration files (default: "0640")
-*rsyslog_file_create_mode*: Default mode for new files created by rsyslog  (default "0640")
-*rsyslog_umask*: Specify the rsyslogd processes' umask (default "0022")
-*rsyslog_abort_on_unclean_config*: Check config syntax on startup and abort if unclean (default: off)
-*rsyslog_repeated_msg_reduction*: Reduce repeating messages (default: off)
-*rsyslog_action_file_default_template*: Use the default, traditional logformat, as default for loggin (default: RSYSLOG_TraditionalFileFormat)
-*rsyslog_action_file_template*: Define only when a custom logformat is neeed (default: undefined)
-*rsyslog_priv_drop_to_user*: Name of the user rsyslog should run under after startup (default: undefined)
-*rsyslog_priv_drop_to_group*: Name of the group rsyslog should run under after startup (default: undefined)
-*rsyslog_default_config*: Setup a default basic configuration stanza (default: "True")
+**rsyslog_main_config**: Main config file path (default: "/etc/rsyslog.conf")
+
+**rsyslog_include_path**: Path of additional config stanzas (default: "/etc/rsyslog.d")
+
+**rsyslog_file_mode**: Default mode for configuration files (default: "0640")
+
+**rsyslog_file_create_mode**: Default mode for new files created by rsyslog  (default "0640")
+
+**rsyslog_umask**: Specify the rsyslogd processes' umask (default "0022")
+
+**rsyslog_abort_on_unclean_config**: Check config syntax on startup and abort if unclean (default: off)
+
+**rsyslog_repeated_msg_reduction**: Reduce repeating messages (default: off)
+
+**rsyslog_action_file_default_template**: Use the default, traditional logformat, as default for loggin (default: RSYSLOG_TraditionalFileFormat)
+
+**rsyslog_action_file_template**: Define only when a custom logformat is neeed (default: undefined)
+
+**rsyslog_priv_drop_to_user**: Name of the user rsyslog should run under after startup (default: undefined)
+
+**rsyslog_priv_drop_to_group**: Name of the group rsyslog should run under after startup (default: undefined)
+
+**rsyslog_default_config**: Setup a default basic configuration stanza (default: "True")
+
 
 Dependencies
 ------------
