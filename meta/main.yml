@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: Alessio Cassibba (x-drum)
+  description: rsyslog syslogd daemon configuration.
+  license: GPLv2
+  min_ansible_version: 1.8
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Debian
+    versions:
+    - wheezy
+  - name: Ubuntu
+    versions:
+    - trusty
+  - name: Archlinux
+    versions: []
+  categories:
+  - monitoring
+  - system
+dependencies: []
