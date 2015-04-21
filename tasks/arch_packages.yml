@@ -1,4 +1,4 @@
-# install packages for Archlinux
+# Install packages for Archlinux
 ---
 - name: Install packages for Archlinux
   tags:

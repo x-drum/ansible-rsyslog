@@ -1,11 +1,5 @@
 # Install and configure rsyslog
 
-# - name: rsyslog | Include default variables
-#   tags:
-#     - rsyslog
-#     - prereq
-#   include_vars: defaults
-
 - name: rsyslog | Set OS dependent variables
   tags:
     - rsyslog
@@ -41,8 +35,6 @@
     - rsyslog | restart service
   when: rsyslog_os_supported == True
 
-# - name: rsyslog | create additional configuration directory
-#   file: path={{project_root}}/conf state=directory
 - name: rsyslog | create additional configuration directory
   tags:
     - rsyslog
@@ -104,3 +96,4 @@
     - configuration
   service: name={{ rsyslog_service_name }} enabled=yes
   when: rsyslog_os_supported == True
+

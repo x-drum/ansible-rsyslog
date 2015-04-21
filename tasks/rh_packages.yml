@@ -1,4 +1,4 @@
-# install packages for RHEL
+# Install packages for RHEL
 ---
 - name: Install packages for RHEL
   tags:
