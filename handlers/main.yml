@@ -1,5 +1,5 @@
 ---
-- name: rsyslog | restart service
+- name: restart rsyslog
   tags: 
     - rsyslog
     - configuration

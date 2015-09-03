@@ -1,6 +1,6 @@
 # Install packages for Archlinux
 ---
-- name: Install packages for Archlinux
+- name: install packages for Archlinux
   tags:
     - rsyslog
     - packages

@@ -11,5 +11,6 @@ rsyslog_action_file_default_template: RSYSLOG_TraditionalFileFormat
 #rsyslog_action_file_template: "%rawmsg%\n"
 #rsyslog_priv_drop_to_user: syslog
 #rsyslog_priv_drop_to_group: syslog
+items: []
 rsyslog_default_config: "True"
 rsyslog_os_supported: no

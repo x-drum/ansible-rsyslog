@@ -1,6 +1,6 @@
 # Install packages for Debian
 ---
-- name: Install packages for Debian
+- name: install packages for Debian
   tags:
     - rsyslog
     - packages

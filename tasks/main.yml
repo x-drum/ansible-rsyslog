@@ -1,6 +1,6 @@
 # Install and configure rsyslog
 
-- name: rsyslog | Set OS dependent variables
+- name: set OS dependent variables
   tags:
     - rsyslog
     - prereq
@@ -21,7 +21,7 @@
 - include: main_arch.yml
   when: ansible_os_family == 'Archlinux'
 
-- name: rsyslog | Setup main configuration
+- name: setup main configuration
   tags:
     - rsyslog
     - files
@@ -32,10 +32,10 @@
     group={{ rsyslog_file_group }}
     mode={{ rsyslog_file_mode }}
   notify:
-    - rsyslog | restart service
+    - restart rsyslog
   when: rsyslog_os_supported == True
 
-- name: rsyslog | create additional configuration directory
+- name: create additional configuration directory
   tags:
     - rsyslog
     - files
@@ -47,7 +47,7 @@
     state=directory
   when: rsyslog_os_supported == True
 
-- name: rsyslog | Setup default additional configuration
+- name: setup default additional configuration
   tags:
     - rsyslog
     - files
@@ -71,10 +71,10 @@
         - 'local7.*                                 /var/log/boot.log'
         - '*.*                                      /var/log/uncategorized.log'
   notify:
-    - rsyslog | restart service
+    - restart rsyslog
   when: rsyslog_default_config == "True" and rsyslog_os_supported == True
 
-- name: rsyslog | Setup additional configurations
+- name: setup additional configurations
   tags:
     - rsyslog
     - files
@@ -87,13 +87,13 @@
   with_items: 
     - "{{ items }}"
   notify:
-    - rsyslog | restart service
+    - restart rsyslog
   when: rsyslog_os_supported == True
 
-- name: rsyslog | Enable service
+- name: enable service
   tags:
     - rsyslog
     - configuration
-  service: name={{ rsyslog_service_name }} enabled=yes
+  service: name={{ rsyslog_service_name }} enabled=yes state=started
   when: rsyslog_os_supported == True
 

@@ -1,6 +1,6 @@
 # Install packages for RHEL
 ---
-- name: Install packages for RHEL
+- name: install packages for RHEL
   tags:
     - rsyslog
     - packages
