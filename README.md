@@ -45,25 +45,26 @@ Example Playbook
   remote_user: root
   sudo: no
   - roles: 
-    - {{ role: rsyslog }}
+    - { role: rsyslog }
 ```
 2) Install rsyslog, without default configuration and setup two different custom stanzas
 ```yaml
 - hosts: all
   remote_user: root
   sudo: no
-  - vars:
+  vars:
     rsyslog_default_config: False
+  roles:
   - role: rsyslog
     items:
-      - name: "20-iptables"
-        lines: 
-          - ':msg, contains, "iptables" /var/log/iptables.log'
-          - '& ~'
-      - name: "30-dovecot"
-        lines: 
-          - 'if $programname == 'dovecot' and $syslogseverity <= '6' then ~'
-          - '& ~'
+    - name: "20-iptables"
+      lines: 
+        - ':msg, contains, "iptables" /var/log/iptables.log'
+        - '& ~'
+    - name: "30-dovecot"
+      lines: 
+        - 'if $programname == "dovecot" and $syslogseverity <= "6" then ~'
+        - '& ~'
 ```
 
 License
