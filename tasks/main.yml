@@ -1,5 +1,5 @@
 # Install and configure rsyslog
-
+---
 - name: set OS dependent variables
   tags:
     - rsyslog
