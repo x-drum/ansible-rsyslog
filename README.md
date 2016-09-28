@@ -67,6 +67,15 @@ Example Playbook
         - '& ~'
 ```
 
+3) Enable Syslog server
+```
+---
+- hosts: all
+  roles:
+    - { role: rsyslog, "rsyslog_server": yes }
+       
+```
+
 License
 -------
 
