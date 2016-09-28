@@ -14,3 +14,5 @@ rsyslog_action_file_default_template: RSYSLOG_TraditionalFileFormat
 items: []
 rsyslog_default_config: "True"
 rsyslog_os_supported: no
+#rsyslog_server: no
+rsyslog_network_port: "514"
