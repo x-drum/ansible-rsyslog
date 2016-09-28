@@ -67,9 +67,8 @@ Example Playbook
         - '& ~'
 ```
 3) Enable rsyslog server
-```
+```yaml
 - hosts: all
-
   roles:
     - { role: ../../roles/ansible-rsyslog-custom, "rsyslog_server": yes }
 ```
