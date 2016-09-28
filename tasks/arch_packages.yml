@@ -5,4 +5,4 @@
     - rsyslog
     - packages
   pacman: pkg={{item}} state=installed
-  with_items: rsyslog_package_names
+  with_items: '{{ rsyslog_package_names }}'
