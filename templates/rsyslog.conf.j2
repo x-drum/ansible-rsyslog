@@ -25,4 +25,9 @@ $PrivDropToUser {{ rsyslog_priv_drop_to_user }}
 $PrivDropToGroup  {{ rsyslog_priv_drop_to_group }}
 {% endif %}
 
+{% if rsyslog_server is defined %}
+$ModLoad imtcp
+$InputTCPServerRun {{ rsyslog_network_port  }}
+{% endif %}
+
 $IncludeConfig {{ rsyslog_include_path }}/*.conf

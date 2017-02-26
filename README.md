@@ -66,6 +66,12 @@ Example Playbook
         - 'if $programname == "dovecot" and $syslogseverity <= "6" then ~'
         - '& ~'
 ```
+3) Enable rsyslog server
+```yaml
+- hosts: all
+  roles:
+    - { role: ../../roles/ansible-rsyslog-custom, "rsyslog_server": yes }
+```
 
 License
 -------
