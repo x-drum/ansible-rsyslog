@@ -1,0 +1,21 @@
+---
+- name: Test playbook
+  remote_user: root
+  hosts: all
+  vars:
+
+  handlers:
+
+  roles: 
+    - role: ../../xdrum.rsyslog
+      rsyslog_default_config: True
+      purge_config: True
+      items:
+      - name: "20-iptables"
+        lines: 
+          - ':msg, contains, "iptables" /var/log/iptables.log'
+          - '& ~'
+      - name: "30-dovecot"
+        lines: 
+          - 'if $programname == "dovecot" and $syslogseverity <= "6" then ~'
+          - '& ~'

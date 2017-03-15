@@ -35,6 +35,15 @@
     - restart rsyslog
   when: rsyslog_os_supported == True
 
+- name: remove existing (custom/additional) configurations
+  tags:
+    - rsyslog
+    - files
+  file:
+    state: absent
+    path: "{{ rsyslog_include_path }}/"
+  when: purge_config == True
+
 - name: create additional configuration directory
   tags:
     - rsyslog

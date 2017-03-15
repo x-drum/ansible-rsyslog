@@ -30,6 +30,7 @@ and configuration can be overridden, for additional informations please have a l
 
 
 **rsyslog_default_config**: Setup a default basic configuration stanza (default: "True")
+**purge_config**: Purge existing config snippets (default: "False")
 
 
 Dependencies
