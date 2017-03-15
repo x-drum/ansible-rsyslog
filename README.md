@@ -29,17 +29,17 @@ By default this role will install rsyslog and provide a minimal configuration, h
 and configuration can be overridden, for additional informations please have a look to **defaults/main.yml**
 
 
-**rsyslog_default_config**: Setup a default basic configuration stanza (default: "True")
-**purge_config**: Purge existing config snippets (default: "False")
-**use_repo**: Use Adiscon rsyslog official package repository (default: "False")
-**repo_releasever**: Default rsyslog major release repository version to use (default: 8)
-**rsyslog_action_file_template**: Define a custom template for file logging (default: RSYSLOG_TraditionalFileFormat)
-**rsyslog_priv_drop_to_user**: Drop root privileges and switch to given user (default: root)
-**rsyslog_priv_drop_to_group**: Drop root privileges and switch to given group (default: root)
+**rsyslog_default_config**: Setup a default basic configuration stanza (default: "True")  
+**purge_config**: Purge existing config snippets (default: "False")  
+**use_repo**: Use Adiscon rsyslog official package repository (default: "False")  
+**repo_releasever**: Default rsyslog major release repository version to use (default: 8)  
+**rsyslog_action_file_template**: Define a custom template for file logging (default: RSYSLOG_TraditionalFileFormat)  
+**rsyslog_priv_drop_to_user**: Drop root privileges and switch to given user (default: root)  
+**rsyslog_priv_drop_to_group**: Drop root privileges and switch to given group (default: root)  
 
 Additional Role Variables:
 --------------
-**rsyslog_custom_config**: Use a custom template to use as main configuration file (eg: rsyslog_custom_config: /path/to/rsyslog_custom.j2)
+**rsyslog_custom_config**: Use a custom template to use as main configuration file (eg: rsyslog_custom_config: /path/to/rsyslog_custom.j2)  
 
 
 Dependencies
