@@ -1,3 +1,25 @@
 # Debian related tasks
 ---
-- include: deb_packages.yml
+
+- name: Import Adiscon rsyslog Key for apt
+  apt_key: keyserver=keys.gnupg.net id=AEF0CF8E state=present
+  when: use_repo == True and ansible_distribution == 'Debian'
+
+## TODO: v8-stable for debian wheezy only available at this time, sanitize selection
+## http://www.rsyslog.com/debian-repository/
+- name: Enable Adiscon rsyslog apt repo
+  apt_repository: repo='deb http://debian.adiscon.com/v8-stable wheezy/' state=present filename='rsyslog' update_cache='yes'
+  when: use_repo == True and ansible_distribution == 'Debian'
+
+## TODO: v8-stable/v7-stable available, for "ubuntu versions not yet reached end of life".. sanitize selection
+## http://www.rsyslog.com/ubuntu-repository/
+- name: Enable Adiscon rsyslog apt repo
+  apt_repository: repo='ppa:adiscon/v{{ repo_releasever }}-stable'
+  when: use_repo == True and ansible_distribution == 'Ubuntu'
+
+- name: install packages for Debian
+  tags:
+    - rsyslog
+    - packages
+  apt: pkg={{item}} state=installed update_cache=yes
+  with_items: '{{ rsyslog_package_names }}'

@@ -10,6 +10,8 @@
     - role: ../../xdrum.rsyslog
       rsyslog_default_config: True
       purge_config: True
+      use_repo: False
+      repo_releasever: 7
       items:
       - name: "20-iptables"
         lines: 

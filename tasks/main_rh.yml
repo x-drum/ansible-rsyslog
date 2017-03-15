@@ -1,3 +1,30 @@
 # RHEL related tasks
 ---
-- include: rh_packages.yml
+
+- name: Check Adiscon rsyslog GPG Key presence
+  tags:
+    - rsyslog
+    - packages
+  stat: path=/etc/pki/rpm-gpg/RPM-GPG-KEY-Adiscon
+  register: adiscon_gpg_key
+
+- name: Import Adiscon rsyslog GPG Key for RHEL
+  tags:
+    - rsyslog
+    - packages
+  rpm_key: key=http://rpms.adiscon.com/RPM-GPG-KEY-Adiscon state=present
+  when: adiscon_gpg_key.stat.exists == False and use_repo == True
+
+- name: Enable Adiscon rsyslog yum repo
+  tags:
+    - rsyslog
+    - packages
+  template: src=rsyslog.yum.repo.j2 dest=/etc/yum.repos.d/rsyslog.repo
+  when: use_repo == True
+
+- name: install packages for RHEL
+  tags:
+    - rsyslog
+    - packages
+  yum: pkg={{item}} state=latest
+  with_items: '{{ rsyslog_package_names }}'

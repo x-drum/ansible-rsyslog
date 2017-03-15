@@ -1,3 +1,11 @@
 # Archlinux related tasks
 ---
-- include: arch_packages.yml
+
+## TODO maybe?: no official upstream packages/repo for Archlinux
+
+- name: install packages for Archlinux
+  tags:
+    - rsyslog
+    - packages
+  pacman: pkg={{item}} state=installed
+  with_items: '{{ rsyslog_package_names }}'

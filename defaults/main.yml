@@ -12,6 +12,8 @@ rsyslog_action_file_default_template: RSYSLOG_TraditionalFileFormat
 #rsyslog_priv_drop_to_user: syslog
 #rsyslog_priv_drop_to_group: syslog
 purge_config: False
+use_repo: False
+repo_releasever: 8
 items: []
 rsyslog_default_config: "True"
 rsyslog_os_supported: no

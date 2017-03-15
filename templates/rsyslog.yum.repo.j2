@@ -1,0 +1,13 @@
+## {{ ansible_managed }}
+
+[rsyslog_{{ repo_releasever }}]
+name=Adiscon CentOS-{{ ansible_distribution_major_version }} - local packages for {{ ansible_architecture }}
+baseurl=http://rpms.adiscon.com/v7-stable/epel-{{ ansible_distribution_major_version }}/{{ ansible_architecture }}
+enabled=1
+{% if ansible_distribution_major_version == 5 %}
+gpgcheck=0
+{% else %}
+gpgcheck=1
+{% endif %}
+gpgkey=http://rpms.adiscon.com/RPM-GPG-KEY-Adiscon
+protect=1

@@ -31,6 +31,8 @@ and configuration can be overridden, for additional informations please have a l
 
 **rsyslog_default_config**: Setup a default basic configuration stanza (default: "True")
 **purge_config**: Purge existing config snippets (default: "False")
+**use_repo**: Use Adiscon rsyslog official package repository (default: "False")
+**repo_releasever**: Default rsyslog major release repository version to use (default: 8)
 
 
 Dependencies
