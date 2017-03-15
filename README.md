@@ -34,6 +34,10 @@ and configuration can be overridden, for additional informations please have a l
 **use_repo**: Use Adiscon rsyslog official package repository (default: "False")
 **repo_releasever**: Default rsyslog major release repository version to use (default: 8)
 
+Additional Role Variables:
+--------------
+**rsyslog_custom_config**: Use a custom template to use as main configuration file (eg: rsyslog_custom_config: /path/to/rsyslog_custom.j2)
+
 
 Dependencies
 ------------
@@ -69,7 +73,19 @@ Example Playbook
         - 'if $programname == "dovecot" and $syslogseverity <= "6" then ~'
         - '& ~'
 ```
-3) Enable rsyslog server
+3) Install rsyslog, and specify a custom configuration template
+```yaml
+- hosts: all
+  remote_user: root
+  sudo: no
+  vars:
+    rsyslog_default_config: False
+    rsyslog_custom_config: /home/servers/foo.bar/templates/rsyslog_custom.j2
+  roles:
+  - role: rsyslog
+
+```
+4) Enable rsyslog server
 ```yaml
 - hosts: all
   roles:

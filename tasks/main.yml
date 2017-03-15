@@ -26,7 +26,7 @@
     - rsyslog
     - files
   template: >
-    src=rsyslog.conf.j2
+    src={{ rsyslog_custom_config | default('rsyslog.conf.j2') }}
     dest={{ rsyslog_main_config }}
     owner={{ rsyslog_file_owner }}
     group={{ rsyslog_file_group }}
