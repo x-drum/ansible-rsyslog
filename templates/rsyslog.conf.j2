@@ -4,7 +4,7 @@ $ModLoad immark.so
 $ModLoad imuxsock.so
 $ModLoad imklog.so
 
-{% if rsyslog_action_file_template is defined %}
+{% if rsyslog_action_file_template %}
 $ActionFileDefaultTemplate myFormat
 $template myFormat,{{ rsyslog_action_file_template }}
 {% else %}
@@ -18,11 +18,11 @@ $FileOwner {{ rsyslog_file_owner }}
 $FileGroup {{ rsyslog_file_group }}
 $FileCreateMode {{ rsyslog_file_create_mode }}
 $Umask {{ rsyslog_umask }}
-{% if rsyslog_priv_drop_to_user is defined %}
+{% if rsyslog_priv_drop_to_user %}
 $PrivDropToUser {{ rsyslog_priv_drop_to_user }}
 {% endif %}
-{% if rsyslog_priv_drop_to_group is defined %}
-$PrivDropToGroup  {{ rsyslog_priv_drop_to_group }}
+{% if rsyslog_priv_drop_to_group %}
+$PrivDropToGroup {{ rsyslog_priv_drop_to_group }}
 {% endif %}
 
 {% if rsyslog_server is defined %}

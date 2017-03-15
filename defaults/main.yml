@@ -8,9 +8,9 @@ rsyslog_umask: "0022"
 rsyslog_abort_on_unclean_config: "off"
 rsyslog_repeated_msg_reduction: "off"
 rsyslog_action_file_default_template: RSYSLOG_TraditionalFileFormat
-#rsyslog_action_file_template: "%rawmsg%\n"
-#rsyslog_priv_drop_to_user: syslog
-#rsyslog_priv_drop_to_group: syslog
+rsyslog_action_file_template: False ## example value: "%rawmsg%\n"
+rsyslog_priv_drop_to_user: False ## example value: syslog
+rsyslog_priv_drop_to_group: False ## example value: syslog
 purge_config: False
 use_repo: False
 repo_releasever: 8

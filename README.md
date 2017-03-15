@@ -33,6 +33,9 @@ and configuration can be overridden, for additional informations please have a l
 **purge_config**: Purge existing config snippets (default: "False")
 **use_repo**: Use Adiscon rsyslog official package repository (default: "False")
 **repo_releasever**: Default rsyslog major release repository version to use (default: 8)
+**rsyslog_action_file_template**: Define a custom template for file logging (default: RSYSLOG_TraditionalFileFormat)
+**rsyslog_priv_drop_to_user**: Drop root privileges and switch to given user (default: root)
+**rsyslog_priv_drop_to_group**: Drop root privileges and switch to given group (default: root)
 
 Additional Role Variables:
 --------------
