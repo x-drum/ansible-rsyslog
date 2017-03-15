@@ -6,9 +6,9 @@ This role installs and configures rsyslog.
 Supported Platforms
 -------------------
 
-* RHEL 6
+* RHEL 5/6/7
 * Archlinux
-* Ubuntu Trusty
+* Ubuntu Trusty/Xenial
 * Debian Wheezy
 
 It will likely run on other platforms, just drop in vars/ a new file to support your os variant, vars are parsed in the following order/format:
