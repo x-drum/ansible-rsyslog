@@ -30,4 +30,9 @@ $ModLoad imtcp
 $InputTCPServerRun {{ rsyslog_network_port  }}
 {% endif %}
 
+{% if rsyslog_server is defined %}
+$ModLoad imtcp  
+$InputTCPServerRun {{ rsyslog_network_port  }}
+{% endif %}
+
 $IncludeConfig {{ rsyslog_include_path }}/*.conf
