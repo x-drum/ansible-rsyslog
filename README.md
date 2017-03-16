@@ -95,6 +95,15 @@ Example Playbook
     - { role: ../../roles/ansible-rsyslog-custom, "rsyslog_server": yes }
 ```
 
+3) Enable Syslog server
+```
+---
+- hosts: all
+  roles:
+    - { role: rsyslog, "rsyslog_server": yes }
+       
+```
+
 License
 -------
 
