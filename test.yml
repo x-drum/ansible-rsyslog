@@ -12,6 +12,17 @@
       purge_config: True
       use_repo: False
       repo_releasever: 7
+      rsyslog_action_file_template: "%rawmsg%\n"
+      rsyslog_server_udp: True
+      rsyslog_server_udp_name: "testUDPInput"
+      rsyslog_server_udp_port: "5514"
+      rsyslog_server_udp_address: "0.0.0.0"
+      rsyslog_server_udp_ratelimit: "15"
+      rsyslog_server_tcp: True
+      rsyslog_server_tcp_name: "testTCPInput"
+      rsyslog_server_tcp_port: "9514"
+      rsyslog_server_tcp_address: "0.0.0.0"
+      rsyslog_server_tcp_ratelimit: "25"
       items:
       - name: "20-iptables"
         lines: 

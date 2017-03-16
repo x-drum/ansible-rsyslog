@@ -36,6 +36,16 @@ and configuration can be overridden, for additional informations please have a l
 **rsyslog_action_file_template**: Define a custom template for file logging (default: RSYSLOG_TraditionalFileFormat)  
 **rsyslog_priv_drop_to_user**: Drop root privileges and switch to given user (default: root)  
 **rsyslog_priv_drop_to_group**: Drop root privileges and switch to given group (default: root)  
+**rsyslog_server_udp**: Enable a simple UDP server receiver (default: False)  
+**rsyslog_server_udp_name**: Assign a name to the given receiver (default: "imudp")  
+**rsyslog_server_udp_port**: Specifies the port the server shall listen to (default: "514")  
+**rsyslog_server_udp_address**: Local ip address the udp server should listen (default: "0.0.0.0")  
+**rsyslog_server_udp_ratelimit**: The rate-limiting interval in seconds (default: "5")  
+**rsyslog_server_tcp**: Enable a simple TCP server receiver (default: False)  
+**rsyslog_server_tcp_name**: Assign a name to the given receiver (default: "imtcp")  
+**rsyslog_server_tcp_port**: Specifies the port the server shall listen to (default: "514")  
+**rsyslog_server_tcp_address**: Local ip address the tcp server should listen **POSSIBLY BROKEN** (default: "0.0.0.0")  
+**rsyslog_server_tcp_ratelimit**: The rate-limiting interval in seconds (default: "5")  
 
 Additional Role Variables:
 --------------
@@ -61,7 +71,6 @@ Example Playbook
 ```yaml
 - hosts: all
   remote_user: root
-  sudo: no
   vars:
     rsyslog_default_config: False
   roles:
@@ -76,23 +85,33 @@ Example Playbook
         - 'if $programname == "dovecot" and $syslogseverity <= "6" then ~'
         - '& ~'
 ```
-3) Install rsyslog, and specify a custom configuration template
+3) Install rsyslog, specify a custom configuration template
 ```yaml
 - hosts: all
   remote_user: root
-  sudo: no
   vars:
     rsyslog_default_config: False
     rsyslog_custom_config: /home/servers/foo.bar/templates/rsyslog_custom.j2
   roles:
   - role: rsyslog
-
 ```
-4) Enable rsyslog server
+
+4) Install rsyslog using official repository packages, use major release 7
+```
+- hosts: all
+  remote_user: root
+  roles:
+    - { role: rsyslog, "use_repo": True, "repo_releasever": 7 }
+```
+
+5) Enable a simple rsyslog UDP server (receiver) for remote logging
 ```yaml
 - hosts: all
+  vars:
   roles:
-    - { role: ../../roles/ansible-rsyslog-custom, "rsyslog_server": yes }
+  - role: rsyslog
+    rsyslog_server_udp_port: 514
+    rsyslog_server_udp_address: 192.168.200.201
 ```
 
 License

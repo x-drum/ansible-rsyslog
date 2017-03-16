@@ -25,9 +25,16 @@ $PrivDropToUser {{ rsyslog_priv_drop_to_user }}
 $PrivDropToGroup {{ rsyslog_priv_drop_to_group }}
 {% endif %}
 
-{% if rsyslog_server is defined %}
-$ModLoad imtcp
-$InputTCPServerRun {{ rsyslog_network_port  }}
+{% if rsyslog_server_udp %}
+module(load="imudp")
+input(type="imudp" inputname="{{ rsyslog_server_udp_name }}" port="{{ rsyslog_server_udp_port }}" address="{{ rsyslog_server_udp_address }}" 
+      ratelimit.interval="{{ rsyslog_server_udp_ratelimit }}" SchedulingPolicy="fifo" )
+{% endif %}
+
+{% if rsyslog_server_tcp %}
+module(load="imtcp" MaxSessions="500")
+input(type="imtcp" name="{{ rsyslog_server_tcp_name }}" port="{{ rsyslog_server_tcp_port }}" address="{{ rsyslog_server_tcp_address }}"
+      ratelimit.interval="{{ rsyslog_server_tcp_ratelimit }}" )
 {% endif %}
 
 $IncludeConfig {{ rsyslog_include_path }}/*.conf
