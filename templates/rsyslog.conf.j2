@@ -4,6 +4,9 @@ $ModLoad immark.so
 $ModLoad imuxsock.so
 $ModLoad imklog.so
 
+{% if rsyslog_max_message_size is defined %}
+$MaxMessageSize {{ rsyslog_max_message_size }}
+{% endif %}
 {% if rsyslog_action_file_template %}
 $ActionFileDefaultTemplate myFormat
 $template myFormat,{{ rsyslog_action_file_template }}
