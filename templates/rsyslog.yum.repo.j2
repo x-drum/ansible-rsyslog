@@ -1,4 +1,4 @@
-## {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 [rsyslog_{{ repo_releasever }}]
 name=Adiscon CentOS-{{ ansible_distribution_major_version }} - local packages for {{ ansible_architecture }}

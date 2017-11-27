@@ -1,9 +1,12 @@
-## {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 $ModLoad immark.so
 $ModLoad imuxsock.so
 $ModLoad imklog.so
 
+{% if rsyslog_max_message_size is defined %}
+$MaxMessageSize {{ rsyslog_max_message_size }}
+{% endif %}
 {% if rsyslog_action_file_template %}
 $ActionFileDefaultTemplate myFormat
 $template myFormat,{{ rsyslog_action_file_template }}
@@ -13,6 +16,7 @@ $ActionFileDefaultTemplate {{ rsyslog_action_file_default_template }}
 
 $AbortOnUncleanConfig {{ rsyslog_abort_on_unclean_config | default('off') }}
 $RepeatedMsgReduction {{ rsyslog_repeated_msg_reduction | default('off') }}
+$PreserveFQDN {{ rsyslog_preserve_fqdn | default('on') }}
 
 $FileOwner {{ rsyslog_file_owner }}
 $FileGroup {{ rsyslog_file_group }}

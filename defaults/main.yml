@@ -27,3 +27,4 @@ rsyslog_server_tcp_port: "514"
 rsyslog_server_tcp_address: "0.0.0.0"
 rsyslog_server_tcp_ratelimit: "5"
 rsyslog_os_supported: no
+rsyslog_max_message_size: 8k
