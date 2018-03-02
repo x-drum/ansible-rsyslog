@@ -76,7 +76,7 @@
         - 'cron.*                                   -/var/log/cron.log'
         - 'mail.*                                   -/var/log/mail.log'
         - 'uucp,news.*                              /var/log/spooler'
-        - '*.emerg                                  *'
+        - '*.emerg                                  /*'
         - 'local7.*                                 /var/log/boot.log'
         - '*.*                                      /var/log/uncategorized.log'
   notify:
