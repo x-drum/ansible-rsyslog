@@ -2,6 +2,7 @@
 ---
 rsyslog_main_config: "/etc/rsyslog.conf"
 rsyslog_include_path: "/etc/rsyslog.d"
+rsyslog_include_mode: 0755
 rsyslog_file_mode: "0640"
 rsyslog_file_create_mode: "0640"
 rsyslog_umask: "0022"

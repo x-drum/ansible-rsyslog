@@ -52,7 +52,7 @@
     path="{{ rsyslog_include_path }}"
     owner={{ rsyslog_file_owner }}
     group={{ rsyslog_file_group }}
-    mode={{ rsyslog_file_mode }}
+    mode={{ rsyslog_include_mode }}
     state=directory
   when: rsyslog_os_supported == True
 
